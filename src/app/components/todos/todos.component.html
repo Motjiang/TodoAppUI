@@ -22,10 +22,10 @@
               </tr>
             </thead>
             <tbody>             
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
+              <tr *ngFor="let todo of todos">
+                <th>{{todo.description}}</th>
+                <td>{{todo.createdDate}}</td>
+                <td>{{todo.isCompleted}}</td>
               </tr>              
             </tbody>
           </table>
