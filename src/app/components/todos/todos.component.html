@@ -3,7 +3,7 @@
         <form #Form="ngForm" (ngSubmit)="addTodo()" class="d-flex align-items-center">
             <div class="mb-3 flex-grow-1 me-2">
                 <label for="description" class="form-label">Description</label>
-                <input type="text" class="form-control" id="description" name="description"  [(ngModel)]="newTodo.description" >
+                <input type="text" class="form-control" id="description" name="description"  [(ngModel)]="newTodo.TaskDescription" >
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">Submit</button>

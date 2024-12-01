@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/app/models/todo.model';
 import { TodoService } from '../services/todo.service';
+import { Guid } from 'guid-typescript';
+import { TodoDto } from 'src/app/models/todoDto.model';
 
 @Component({
   selector: 'app-todos',
@@ -11,15 +13,17 @@ export class TodosComponent implements OnInit {
 
 
     todos: Todo[] = [];
-    newTodo: Todo = {
+    newTodo: TodoDto = {
       id:'',
-      description:'',
-      createdDate: new Date(),
-      isCompleted: false,
-      completedDate: new Date()
+      TaskDescription:'',
+      TaskCreatedDate: new Date(),
+      IsTaskCompleted: false,
+      TaskCompletedDate: new Date()
     };
 
-    constructor(private todoService:TodoService){}
+    constructor(private todoService:TodoService){
+      
+    }
 
     getAllTodos() {
       this.todoService.getAllTodos().subscribe({
@@ -37,7 +41,7 @@ export class TodosComponent implements OnInit {
       this.todoService.addTodo(this.newTodo).subscribe({
         next: (response) => {
           console.log('Todo added successfully:', response);
-          this.getAllTodos(); // Fetch all todos after adding a new one
+          this.getAllTodos(); 
         },
         error: (error) => {
           console.error('Error adding todo:', error);
