@@ -57,6 +57,9 @@ export class TodosComponent implements OnInit {
         TaskCreatedDate: todo.createdDate, // Map 'createdDate' to 'TaskCreatedDate'
         IsTaskCompleted: !todo.isCompleted, // Toggle 'isCompleted' for 'IsTaskCompleted'
         TaskCompletedDate:  new Date(), // Set completed date if completed
+        IsTaskDeleted: false,
+        TaskDeletedDate: null,
+        
       };
     
       this.todoService.updateTodo(id, updatedTodo).subscribe({
@@ -79,4 +82,15 @@ export class TodosComponent implements OnInit {
     //     }
     //   });
     // }
+
+   
+
+
+    deleteTodo(id:string) {
+      this.todoService.deleteTodo(id).subscribe({
+        next:(response) => {
+          this.getAllTodos();
+        }
+      })
+    }
 }

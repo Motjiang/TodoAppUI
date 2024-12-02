@@ -4,4 +4,6 @@ export interface Todo {
     isCompleted: boolean,
     createdDate: Date,
     completedDate: Date,
+    isDeleted:boolean,
+    deletedDate:Date
 }

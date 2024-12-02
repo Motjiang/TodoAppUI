@@ -4,4 +4,6 @@ export interface TodoRequestDto {
     TaskCreatedDate: Date,
     IsTaskCompleted: boolean,
     TaskCompletedDate: Date,
+    IsTaskDeleted: boolean,
+    TaskDeletedDate: null,
 }
