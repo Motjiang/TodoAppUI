@@ -105,7 +105,7 @@ export class TodosComponent implements OnInit {
       this.isHovering = true;
   
       this.clear();
-      this.toastr.error('Click to delete this item.', 'Delete Tooltip', {
+      this.toastr.error('Click to delete this item.', '', {
         timeOut: 3000
       });
   
@@ -113,7 +113,7 @@ export class TodosComponent implements OnInit {
       this.hoverTimeout = setTimeout(() => {
         if (this.isHovering) {
           this.clear();
-          this.toastr.warning('You have been hovering for a while! Ready to delete?', 'Delete Tooltip', {
+          this.toastr.warning('You have been hovering for a while! Ready to delete?', '', {
             timeOut: 4000
           });
         }
