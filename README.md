@@ -1,27 +1,39 @@
-# TodoAppUI
+# Todo List Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.12.
+This project is a **Todo List Application** built with **C#, .NET Core Rest API, Angular 16, TypeScript, HTML, ngx-bootstrap, and ngx-toastr**. The application is designed to simplify daily task management by allowing users to create, read, update, and delete their todo tasks seamlessly.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Task Management**:
+  - Create new tasks.
+  - Mark tasks as completed or revert to not completed.
+  - Soft delete functionality with the option to undo the delete operation.
+  
+- **Interactive UI**:
+  - Hovering over the delete button triggers a toaster warning message.
+  - Prolonged hover on the delete button prompts a confirmation alert, ensuring the user is ready to proceed.
 
-## Code scaffolding
+- **Upcoming Enhancements**:
+  - Adding **pagination** to enhance data handling and improve the user experience.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
+- **Backend**:  
+  - C#  
+  - .NET Core Rest API  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Frontend**:  
+  - Angular 16  
+  - TypeScript  
+  - HTML  
+  - ngx-bootstrap  
+  - ngx-toastr  
 
-## Running unit tests
+## Lessons Learned
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Working on this project has provided me with valuable insights, including:  
 
-## Running end-to-end tests
+- Gaining a deeper understanding of **Angular** and **TypeScript**.
+- Recognizing the importance of reading official documentation over solely relying on tutorials.
+- Developing robust UI/UX elements that prioritize user interaction and feedback.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
