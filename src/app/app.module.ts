@@ -10,6 +10,8 @@ import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RecyclebinComponent } from './components/recyclebin/recyclebin.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
