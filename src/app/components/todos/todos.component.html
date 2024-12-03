@@ -3,20 +3,14 @@
   <div class="row align-items-center mt-5">
     <form #Form="ngForm" (ngSubmit)="addTodo()" class="d-flex align-items-center w-100">
       <div class="flex-grow-1 me-2">
-        <label for="description" class="form-label">Task Description:</label>
+        <label for="description" class="form-label">Task Description:  <span class="text-danger" style="font-size: larger;"> *</span></label>
         <div style="min-height: 69px;">
-          <input 
-            type="text" 
-            class="form-control" 
-            id="description" 
-            name="description" 
-            [(ngModel)]="newTodo.TaskDescription"
-            required
-            #description="ngModel">
-          
+          <input type="text" class="form-control" id="description" name="description"
+            [(ngModel)]="newTodo.TaskDescription" required #description="ngModel">
+
           <!-- Validation Feedback -->
           <div *ngIf="description.invalid && description.touched" class="text-danger mt-2">
-            Task Description is required.
+            Task Description is required!
           </div>
         </div>
       </div>
@@ -26,7 +20,7 @@
       </div>
     </form>
   </div>
-  
+
   <ng-container *ngIf="todos.length > 0; else noTodo">
     <div class="row">
       <h4 class="text-center mt-3"><i>Todo List</i></h4>
@@ -39,7 +33,7 @@
             <th></th>
           </tr>
         </thead>
-        <tbody>             
+        <tbody>
           <tr *ngFor="let todo of todos">
             <th [class.stroke]="todo.isCompleted">{{todo.description}}</th>
             <td>{{todo.createdDate | date: 'MM/dd/yyyy hh:mm a'}}</td>
@@ -50,12 +44,12 @@
               <a [routerLink]="[]" (click)="deleteTodo(todo.id)" (mouseover)="onMouseOver()"
                 (mouseleave)="onMouseLeave()" class="btn btn-danger">Delete</a>
             </td>
-          </tr>              
+          </tr>
         </tbody>
       </table>
     </div>
   </ng-container>
-  
+
   <ng-template #noTodo>
     <div class="alert alert-info text-center" role="alert">
       You don't have any todos 🤗
