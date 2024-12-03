@@ -4,6 +4,7 @@ import { TodoService } from '../services/todo.service';
 import { Guid } from 'guid-typescript';
 import { TodoDto } from 'src/app/models/todoDto.model';
 import { TodoRequestDto } from 'src/app/models/todoRequestDto.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-todos',
@@ -22,7 +23,11 @@ export class TodosComponent implements OnInit {
       TaskCompletedDate: new Date()
     };
 
-    constructor(private todoService:TodoService){
+    private hoverTimeout: any;
+    private hoverTimeLimit: number = 10000; 
+    private isHovering: boolean = false;
+
+    constructor(private todoService:TodoService, private toastr:ToastrService){
       
     }
 
@@ -42,6 +47,9 @@ export class TodosComponent implements OnInit {
       this.todoService.addTodo(this.newTodo).subscribe({
         next: (response) => {
           console.log('Todo added successfully:', response);
+          this.newTodo.TaskDescription = '';
+          this.clear();
+          this.toastr.success("Task added successfully")
           this.getAllTodos(); 
         },
         error: (error) => {
@@ -49,6 +57,7 @@ export class TodosComponent implements OnInit {
         },
       });
     }
+    
 
     onCompletedChange(id: string, todo: Todo) {
       const updatedTodo: TodoRequestDto = {
@@ -65,6 +74,14 @@ export class TodosComponent implements OnInit {
       this.todoService.updateTodo(id, updatedTodo).subscribe({
         next: (response) => {
           console.log('Todo updated successfully:', response);
+          if(updatedTodo.IsTaskCompleted){
+            this.clear();
+            this.toastr.success("Task Completed")
+          }
+          else if(!updatedTodo.IsTaskCompleted){
+            this.clear();
+            this.toastr.info("Task marked not complete")
+          }
           this.getAllTodos(); // Refresh the list after update
         },
         error: (error) => {
@@ -84,11 +101,49 @@ export class TodosComponent implements OnInit {
     // }
 
    
+    onMouseOver() {
+      this.isHovering = true;
+  
+      this.clear();
+      this.toastr.error('Click to delete this item.', 'Delete Tooltip', {
+        timeOut: 3000
+      });
+  
+      // Set a timeout to change the message after the hover time limit
+      this.hoverTimeout = setTimeout(() => {
+        if (this.isHovering) {
+          this.clear();
+          this.toastr.warning('You have been hovering for a while! Ready to delete?', 'Delete Tooltip', {
+            timeOut: 4000
+          });
+        }
+      }, this.hoverTimeLimit);
+    }
+  
+    onMouseLeave() {
+      this.isHovering = false;
+  
+      // Clear the timeout if mouse leaves the button before the limit
+      if (this.hoverTimeout) {
+        clearTimeout(this.hoverTimeout);
+      }
+  
+      // You can also display a different Toastr message if you wish to notify the user when they leave the button.
+      this.clear();
+    }
+
+    clear(){
+      this.toastr.clear();
+    }
+
+   
 
 
     deleteTodo(id:string) {
       this.todoService.deleteTodo(id).subscribe({
         next:(response) => {
+          this.clear();
+          this.toastr.success("Moved to recycle bin")
           this.getAllTodos();
         }
       })

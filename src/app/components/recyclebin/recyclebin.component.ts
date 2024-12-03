@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/app/models/todo.model';
 import { TodoService } from '../services/todo.service';
 import { TodoRequestDto } from 'src/app/models/todoRequestDto.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-recyclebin',
@@ -12,7 +13,7 @@ export class RecyclebinComponent  implements OnInit{
 
   todos: Todo[] = [];
 
-  constructor(private todoService:TodoService){
+  constructor(private todoService:TodoService, private toastr:ToastrService){
 
   }
 
@@ -43,6 +44,8 @@ export class RecyclebinComponent  implements OnInit{
     this.todoService.updateUndoTodo(id, updatedTodo).subscribe({
       next: (response) => {
         console.log('Undo succeeded:', response);
+        this.clear();
+        this.toastr.success("Retrieved successfully")
         this.getAllDeletedTodos();
       },
       error: (error) => {
@@ -51,5 +54,7 @@ export class RecyclebinComponent  implements OnInit{
     });
   }
 
-
+  clear(){
+    this.toastr.clear();
+  }
 }

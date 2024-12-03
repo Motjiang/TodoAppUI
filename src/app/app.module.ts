@@ -9,6 +9,8 @@ import { TodosComponent } from './components/todos/todos.component';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RecyclebinComponent } from './components/recyclebin/recyclebin.component';
+import { ToastrModule } from 'ngx-toastr';
+import { PaginationModule} from 'ngx-bootstrap/pagination'
 
 
 
@@ -24,7 +26,13 @@ import { RecyclebinComponent } from './components/recyclebin/recyclebin.componen
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      preventDuplicates: true,
+      positionClass:'toast-top-right',
+    }),
+    PaginationModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
