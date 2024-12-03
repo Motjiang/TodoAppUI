@@ -31,4 +31,12 @@ export class TodoService {
   deleteTodo(id:string): Observable<Todo> {
     return this.http.delete<Todo>(`${environment.baseApiUrl}/api/todo/${id}`);
   }
+
+  getAllDeletedTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(`${environment.baseApiUrl}/api/todo/getDeletedTodos`);
+  }
+
+  updateUndoTodo(id:string, todo:TodoRequestDto): Observable<TodoRequestDto>{
+    return this.http.put<TodoRequestDto>(`${environment.baseApiUrl}/api/todo/${id}`, todo);
+  }
 }

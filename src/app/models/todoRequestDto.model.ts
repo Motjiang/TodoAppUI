@@ -5,5 +5,5 @@ export interface TodoRequestDto {
     IsTaskCompleted: boolean,
     TaskCompletedDate: Date,
     IsTaskDeleted: boolean,
-    TaskDeletedDate: null,
+    TaskDeletedDate: Date,
 }

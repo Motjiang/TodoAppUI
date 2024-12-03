@@ -58,7 +58,7 @@ export class TodosComponent implements OnInit {
         IsTaskCompleted: !todo.isCompleted, // Toggle 'isCompleted' for 'IsTaskCompleted'
         TaskCompletedDate:  new Date(), // Set completed date if completed
         IsTaskDeleted: false,
-        TaskDeletedDate: null,
+        TaskDeletedDate: new Date(),
         
       };
     
